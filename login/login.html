@@ -1,34 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title></head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Strandens Hudpleje</title>
     <script src="script.js" defer></script>
+</head>
 <body>
-<form id="signupForm">
-    <input type="text" value="Ole" id="nameField">
-    <input type="text" value="123" id="passwordFieldSignup">
-    <input type="submit" value="Sign up">
-</form>
-<br/>
-<form id="loginForm">
-    <input type="text" value="Ole" id="usernameField">
-    <input type="text" value="123" id="passwordField">
-    <input type="submit" value="Log in">
-</form>
+<div class="container">
+    <header>
+        <h1>Strandens Hudpleje</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Forside</a></li>
+            <li><a href="#">Om Os</a></li>
+            <li><a href="#">Behandlinger</a></li>
+            <li><a href="#">Booking</a></li>
+            <li><a href="login/login.html">Admin</a></li>
+        </ul>
+    </nav>
+    <main>
+        <form id="signupForm">
+            <input type="text" value="Ole" id="nameField">
+            <input type="text" value="123" id="passwordFieldSignup">
+            <input type="submit" value="Sign up">
+        </form>
+        <br/>
+        <form id="loginForm">
+            <input type="text" value="Ole" id="usernameField">
+            <input type="text" value="123" id="passwordField">
+            <input type="submit" value="Log in">
+        </form>
 
-<form id="deleteUserForm">
-    <input type="text" placeholder="Username" id="usernameDeleteField">
-    <input type="submit" value="Delete user">
-</form>
-<form id="getSecretForm">
-    <input type="text" placeholder="some query" id="paramField">
-    <input type="submit" value="Get secret">
-</form>
+        <form id="deleteUserForm">
+            <input type="text" placeholder="Username" id="usernameDeleteField">
+            <input type="submit" value="Delete user">
+        </form>
+        <form id="getSecretForm">
+            <input type="text" placeholder="some query" id="paramField">
+            <input type="submit" value="Get secret">
+        </form>
 
-<form id="logoutForm">
-    <input type="submit" value="Log Out">
-</form>
-<div id="container">Initial Text</div>
+        <form id="logoutForm">
+            <input type="submit" value="Log Out">
+        </form>
+        <div id="container">Initial Text</div>
+
+    </main>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
+
