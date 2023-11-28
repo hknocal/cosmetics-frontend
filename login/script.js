@@ -11,7 +11,7 @@ div = document.getElementById('container')
 });
 
 function myFetch(endpoint, method, payload=null, token){
-return fetch(`http://localhost:8080/${endpoint}`,  // important to start this line with 'return'
+return fetch(`https://cosmeticsbackend.azurewebsites.net/${endpoint}`,  // important to start this line with 'return'
 {
 method: method,
 body: payload,
@@ -47,7 +47,7 @@ username: nameField,
 password: passwordFieldSignup
 };
 payload = JSON.stringify(payload)
-fetch("http://localhost:8080/signup",
+fetch("https://cosmeticsbackend.azurewebsites.net/signup",
 {
 method: "POST",
 body: payload,
@@ -71,7 +71,7 @@ username: usernameField,
 password: passwordField
 };
 payload = JSON.stringify(payload)
-fetch("http://localhost:8080/login",
+fetch("https://cosmeticsbackend.azurewebsites.net/login",
 {
 method: "POST",
 body: payload,
