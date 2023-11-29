@@ -19,26 +19,59 @@
 </head>
 <body class="text-center">
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4 mt-5">
-            <form class="form-signin">
-                <h2 class="h3 mb-3 font-weight-normal">Login</h2>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="#">Strandens Hudpleje</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <!-- "Booking" item on the left -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">Booking</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- "Admin" button on the right -->
+            <li class="nav-item">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#adminModal">Admin</button>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-                <div class="form-group">
-                    <label for="username" class="sr-only">Username:</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
-                </div>
+<div class="container mt-5">
+    <h1>Velkommen til Strandens Hudpleje</h1>
+    <!-- Add other content for your landing page as needed -->
+</div>
 
-                <div class="form-group">
-                    <label for="password" class="sr-only">Password:</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-                </div>
+<!-- Admin Modal -->
+<div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="adminModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="adminModalLabel">Admin Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-signin">
+                    <div class="form-group">
+                        <label for="username" class="sr-only">Username:</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                    </div>
 
-                <div class="error-message" id="errorMessage"></div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    </div>
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-            </form>
+                    <div class="error-message" id="errorMessage"></div>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
