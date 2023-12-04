@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const apiUrl = 'http://localhost:8080';
-    //const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
+    //const apiUrl = 'http://localhost:8080';
+    const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
     const loginForm = document.getElementById('form-signin');
     const errorMessage = document.getElementById('errorMessage');
     const tokenDisplay = document.getElementById('tokenDisplay');
