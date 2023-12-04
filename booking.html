@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Strandens Hudpleje Booking</title>
+    <style>
+        body {
+            padding-top: 56px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+        }
+    </style>
+</head>
+<body class="text-center">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="index.html">Strandens Hudpleje</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <!-- "Booking" item on the left -->
+            <li class="nav-item">
+                <a class="nav-link" href="booking.html">Booking</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <!-- "Admin" button on the right -->
+            <li class="nav-item">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#adminModal">Admin</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="bg-light p-4 rounded">
+                        <h2 class="mb-4">Book tid til hudpleje</h2>
+                        <form id="bookingForm">
+                            <!-- Treatment selection -->
+                            <div class="form-group">
+                                <label for="treatmentSelect">Vælg behandling</label>
+                                <select class="form-control" id="treatmentSelect">
+                                    <!-- Options will be populated dynamically -->
+                                </select>
+                            </div>
+                            <div class="row">
+                                <!-- Date selection -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="dateSelect">Vælg dato</label>
+                                        <input type="date" class="form-control" id="dateSelect">
+                                    </div>
+                                </div>
+                                <!-- Time selection -->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="timeSelect">Vælg tid</label>
+                                        <input type="time" class="form-control" id="timeSelect">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Customer data toggle button with Font Awesome down arrow icon -->
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#customerInfo">
+                                Kundeinformation <i class="fas fa-caret-down"></i>
+                            </button>
+                            <div id="customerInfo" class="collapse">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="firstName" placeholder="Fornavn" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="lastName" placeholder="Efternavn" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="address" placeholder="Adresse" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" id="phone" placeholder="Telefon" required>
+                                </div>
+                            </div>
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block mt-4">Bekræft booking</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Sidebar with menu -->
+                    <div class="bg-light p-4 rounded">
+                        <ul class="list-group">
+                            <li class="list-group-item menu-item"><a href="#">Ret booking</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Admin Modal -->
+<div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="adminModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="adminModalLabel">Admin Login</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-signin" id="form-signin">
+                    <div class="form-group">
+                        <label for="username" class="sr-only">Username:</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="error-message" id="errorMessage"></div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Font Awesome script -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
