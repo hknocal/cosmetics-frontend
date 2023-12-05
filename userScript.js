@@ -42,9 +42,55 @@ document.addEventListener('DOMContentLoaded', async function () {
         userListBody.innerHTML = ''; // Clear existing content
         users.forEach(user => {
             const row = document.createElement('tr');
-            row.innerHTML = `<td>${user.id}</td><td>${user.username}</td>`;
+            row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>
+                    <button class="btn btn-danger delete-btn" data-username="${user.username}">Delete</button>
+                </td>
+            `;
             userListBody.appendChild(row);
         });
+    }
+
+    // Add an event listener for clicks on the table body
+    userListBody.addEventListener('click', async function (event) {
+        const target = event.target;
+
+        // Check if the clicked element is a delete button
+        if (target.classList.contains('delete-btn')) {
+            const username = target.dataset.username;
+            const confirmed = confirm('Are you sure you want to delete this user?');
+
+            if (confirmed) {
+                // Call the function to delete the user
+                deleteUser(username);
+            }
+        }
+    });
+
+    // Function to delete the user by sending a DELETE request to the server
+    async function deleteUser(username) {
+        try {
+            const response = await fetch(`${apiUrl}/deleteUser`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${storedToken}`
+                },
+                body: JSON.stringify({ username: username })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.message); // Display the server's message in the console
+                fetchUsers(); // Update the user list after deletion
+            } else {
+                console.error('Error deleting user:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error during fetch:', error);
+        }
     }
 
     // Call fetchUsers to initially populate the user list
