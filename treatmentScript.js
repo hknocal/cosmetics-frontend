@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', async function () {
-    //const apiUrl = 'http://localhost:8080';
-    const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
+    const apiUrl = 'http://localhost:8080';
+    //const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
     const treatmentCreationForm = document.getElementById('treatmentCreationForm');
     const treatmentCreationMessage = document.getElementById('treatmentCreationMessage');
+    const treatmentUpdateMessage = document.getElementById('treatmentUpdateMessage');
     const tokenDisplay = document.getElementById('tokenDisplay');
     const logoutBtn = document.getElementById('logoutBtn');
     const treatmentListBody = document.getElementById('treatmentListBody');
@@ -47,7 +48,120 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    // Call fetchTreatments to initially populate the treatment list
+    //function to create treatment.
+    async function createTreatment(newTreatment) {
+        try {
+            const response = await fetch(`${apiUrl}/treatment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${storedToken}`
+                },
+                body: JSON.stringify(newTreatment)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.message);
+                fetchTreatments();
+            } else {
+                console.error('Error creating treatment:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error during fetch:', error)
+        }
+    }
+
+    //eventlistener for update treatment
+    const treatmentUpdateForm = document.getElementById('treatmentUpdateForm');
+
+    if (treatmentUpdateForm) {
+        treatmentUpdateForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const updatedTreatment = {
+                treatmentType: document.getElementById('updatedTreatmentType').value,
+                price: document.getElementById('updatedTreatmentPrice').value,
+                duration: document.getElementById('updatedTreatmentDuration').value,
+                discount: document.getElementById('updatedTreatmentDiscount').value,
+            };
+
+            try {
+                await updateTreatment(updatedTreatment);
+            } catch (error) {
+                console.error('Error during fetch:', error);
+            }
+        });
+    }
+
+    //update treatment function
+    async function updateTreatment(updatedTreatment) {
+        try {
+            const response = await fetch(`${apiUrl}/treatment/`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${storedToken}`
+                },
+                body: JSON.stringify(updatedTreatment)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.message);
+                fetchTreatments();
+            } else {
+                console.error('Error updating treatment:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error during fetch:', error);
+        }
+    }
+
+
+//function to delete treatment
+    async function deleteTreatment(treatmentId) {
+        try {
+            const response = await fetch(`${apiUrl}/deleteTreatment`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${storedToken}`
+                },
+                body: JSON.stringify({treatmentId: treatmentId})
+            });
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.message);
+                fetchTreatments();
+            } else {
+                console.error('Error deleting treatment:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error during fetch:', error);
+        }
+    }
+
+//eventlistener for deletion
+    treatmentListBody.addEventListener('click', async function (event) {
+        const target = event.target;
+
+        if (target.classList.contains('delete-btn')) {
+            const treatmentType = target.dataset.treatmentType;
+            const confirmed = confirm('Are you sure you want to delete this treatment?');
+
+            if (confirmed) {
+                try {
+                    await deleteTreatment(treatmentType);
+                } catch (error) {
+                    console.error('Error during treatment deletion:', error);
+                }
+
+            }
+        }
+    });
+
+// Call fetchTreatments to initially populate the treatment list
     fetchTreatments();
 
     if (treatmentCreationForm) {
