@@ -52,6 +52,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Display the token on the dashboard if available
     if (tokenDisplay && storedToken) {
-        tokenDisplay.textContent = `JWT Token: ${storedToken}`;
+        tokenDisplay.classList.add('token-link', 'text-primary', 'font-weight-bold', 'mb-3', 'cursor-pointer');
+        tokenDisplay.textContent = 'Click to show JWT Token';
+
+        tokenDisplay.addEventListener('click', function () {
+            if (tokenDisplay.classList.contains('token-link')) {
+                tokenDisplay.textContent = `JWT Token: ${storedToken}`;
+                tokenDisplay.classList.remove('token-link');
+            } else {
+                tokenDisplay.textContent = 'Click to show JWT Token';
+                tokenDisplay.classList.add('token-link');
+            }
+        });
     }
 });
