@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    //function to create treatment
+    //function to create treatment.
     async function createTreatment(newTreatment) {
         try {
             const response = await fetch(`${apiUrl}/treatment`, {
