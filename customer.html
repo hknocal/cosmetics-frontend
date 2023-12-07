@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <title>User Administration</title>
+    <title>Customer Overview</title>
     <style>
         body {
             padding-top: 56px;
@@ -17,6 +17,7 @@
         }
     </style>
 </head>
+
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="dashboard.html">Dashboard</a>
@@ -53,62 +54,87 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">User administration</h1>
+                <h1 class="h2">Customer Overview</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <button id="logoutBtn" class="btn btn-primary">Logout</button>
                 </div>
             </div>
             <div id="tokenDisplay"></div>
-
             <hr/>
 
-            <h3 class="h5">User List</h3>
+            <h3 class="h5">Customer list</h3>
+
             <table class="table">
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Username</th>
-                    <th>Actions</th> <!-- Added a new column for actions -->
+                    <th>firstname</th>
+                    <th>lastname</th>
+                    <th>mail</th>
+                    <th>address</th>
+                    <th>phoneNumber</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="userListBody">
-                <!-- Sample row with delete and update buttons -->
-                <tr>
-                    <td>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
-                <!-- Add more rows as needed -->
+                <tbody id="customerListBody">
                 </tbody>
             </table>
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">
-                Create User
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalLabel" aria-hidden="true">
+            <!-- Update Customer Modal -->
+            <div class="modal fade" id="updateCustomerModal" tabindex="-1" role="dialog"
+                 aria-labelledby="updateCustomerModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="createUserModalLabel">Create User</h5>
+                            <h5 class="modal-title" id="updateCustomerModalLabel">Update Customer</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="userCreationForm">
+                            <!-- Update Customer Message -->
+                            <div id="updateCustomerMessage"></div>
+
+                            <!-- Update Customer Form -->
+                            <form id="updateCustomerForm">
+
+                                <!-- First Name -->
                                 <div class="form-group">
-                                    <label for="newUsername">Username:</label>
-                                    <input type="text" id="newUsername" name="newUsername" class="form-control" placeholder="Enter username" required>
+                                    <label for="updateFirstName">First Name:</label>
+                                    <input type="text" id="updateFirstName" name="updateFirstName" class="form-control"
+                                           required>
                                 </div>
+
+                                <!-- Last Name -->
                                 <div class="form-group">
-                                    <label for="newPassword">Password:</label>
-                                    <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="Enter password" required>
+                                    <label for="updateLastName">Last Name:</label>
+                                    <input type="text" id="updateLastName" name="updateLastName" class="form-control"
+                                           required>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Create User</button>
+
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label for="updateMail">Mail:</label>
+                                    <input type="email" id="updateMail" name="updateMail" class="form-control" required>
+                                </div>
+
+                                <!-- Address -->
+                                <div class="form-group">
+                                    <label for="updateAddress">Address:</label>
+                                    <input type="text" id="updateAddress" name="updateAddress" class="form-control"
+                                           required>
+                                </div>
+
+                                <!-- Phone Number -->
+                                <div class="form-group">
+                                    <label for="updatePhoneNumber">Phone Number:</label>
+                                    <input type="text" id="updatePhoneNumber" name="updatePhoneNumber"
+                                           class="form-control" required>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <button type="submit" class="btn btn-primary">Update Customer</button>
                             </form>
-                            <div id="userCreationMessage"></div>
                         </div>
                     </div>
                 </div>
@@ -120,6 +146,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="userScript.js"></script>
+<script src="customerScript.js"></script>
 </body>
 </html>
