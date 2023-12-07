@@ -35,7 +35,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            Reservations
+                            Bookings
                         </a>
                     </li>
                     <li class="nav-item">
@@ -59,8 +59,6 @@
                     <button id="logoutBtn" class="btn btn-primary">Logout</button>
                 </div>
             </div>
-            <div id="tokenDisplay"></div>
-            <hr/>
 
             <h3 class="h5">Customer list</h3>
 
@@ -68,11 +66,11 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>firstname</th>
-                    <th>lastname</th>
-                    <th>mail</th>
-                    <th>address</th>
-                    <th>phoneNumber</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mail</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -80,60 +78,57 @@
                 </tbody>
             </table>
 
-            <!-- Update Customer Modal -->
-            <div class="modal fade" id="updateCustomerModal" tabindex="-1" role="dialog"
-                 aria-labelledby="updateCustomerModalLabel" aria-hidden="true">
+            <!-- Create Customer Button -->
+            <button id="createCustomerBtn" class="btn btn-primary" data-toggle="modal" data-target="#createCustomerModal">Create Customer</button>
+
+            <!-- Create Customer Modal -->
+            <div class="modal fade" id="createCustomerModal" tabindex="-1" role="dialog" aria-labelledby="createCustomerModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="updateCustomerModalLabel">Update Customer</h5>
+                            <h5 class="modal-title" id="createCustomerModalLabel">Create Customer</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <!-- Update Customer Message -->
-                            <div id="updateCustomerMessage"></div>
+                            <!-- Create Customer Message -->
+                            <div id="createCustomerMessage"></div>
 
-                            <!-- Update Customer Form -->
-                            <form id="updateCustomerForm">
-
+                            <!-- Create Customer Form -->
+                            <form id="createCustomerForm">
                                 <!-- First Name -->
                                 <div class="form-group">
-                                    <label for="updateFirstName">First Name:</label>
-                                    <input type="text" id="updateFirstName" name="updateFirstName" class="form-control"
-                                           required>
+                                    <label for="createFirstName">First Name:</label>
+                                    <input type="text" id="createFirstName" name="createFirstName" class="form-control" required>
                                 </div>
 
                                 <!-- Last Name -->
                                 <div class="form-group">
-                                    <label for="updateLastName">Last Name:</label>
-                                    <input type="text" id="updateLastName" name="updateLastName" class="form-control"
-                                           required>
+                                    <label for="createLastName">Last Name:</label>
+                                    <input type="text" id="createLastName" name="createLastName" class="form-control" required>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="form-group">
-                                    <label for="updateMail">Mail:</label>
-                                    <input type="email" id="updateMail" name="updateMail" class="form-control" required>
+                                    <label for="createMail">Mail:</label>
+                                    <input type="email" id="createMail" name="createMail" class="form-control" required>
                                 </div>
 
                                 <!-- Address -->
                                 <div class="form-group">
-                                    <label for="updateAddress">Address:</label>
-                                    <input type="text" id="updateAddress" name="updateAddress" class="form-control"
-                                           required>
+                                    <label for="createAddress">Address:</label>
+                                    <input type="text" id="createAddress" name="createAddress" class="form-control" required>
                                 </div>
 
                                 <!-- Phone Number -->
                                 <div class="form-group">
-                                    <label for="updatePhoneNumber">Phone Number:</label>
-                                    <input type="text" id="updatePhoneNumber" name="updatePhoneNumber"
-                                           class="form-control" required>
+                                    <label for="createPhoneNumber">Phone Number:</label>
+                                    <input type="text" id="createPhoneNumber" name="createPhoneNumber" class="form-control" required>
                                 </div>
 
                                 <!-- Submit Button -->
-                                <button type="submit" class="btn btn-primary">Update Customer</button>
+                                <button type="submit" class="btn btn-primary">Create Customer</button>
                             </form>
                         </div>
                     </div>

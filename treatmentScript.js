@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', async function () {
-    const apiUrl = 'http://localhost:8080';
-    //const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
+    //const apiUrl = 'http://localhost:8080';
+    const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
     const treatmentCreationForm = document.getElementById('treatmentCreationForm');
     const treatmentCreationMessage = document.getElementById('treatmentCreationMessage');
-    const treatmentUpdateMessage = document.getElementById('treatmentUpdateMessage');
     const tokenDisplay = document.getElementById('tokenDisplay');
     const logoutBtn = document.getElementById('logoutBtn');
     const treatmentListBody = document.getElementById('treatmentListBody');
@@ -12,11 +11,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const storedToken = localStorage.getItem('jwtToken');
     if (window.location.pathname.includes('treatments') && !storedToken) {
         window.location.href = 'index.html';
-    }
-
-    // Display the token on the treatments.html page if available
-    if (tokenDisplay && storedToken) {
-        tokenDisplay.textContent = `JWT Token: ${storedToken}`;
     }
 
     // Fetch and display treatment data
@@ -43,7 +37,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         treatmentListBody.innerHTML = ''; // Clear existing content
         treatments.forEach(treatment => {
             const row = document.createElement('tr');
-            row.innerHTML = `<td>${treatment.treatmentType}</td><td>${treatment.price}</td><td>${treatment.duration}</td><td>${treatment.discount}</td>`;
+            row.innerHTML = `<td>${treatment.treatmentType}</td><td>${treatment.price}</td><td>${treatment.duration}</td><td>${treatment.discount}</td><td>
+            <button class="btn btn-danger delete-btn" data-treatment-id="${treatment.id}">
+                Delete
+            </button>
+        </td>`;
             treatmentListBody.appendChild(row);
         });
     }
@@ -72,54 +70,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    //eventlistener for update treatment
-    const treatmentUpdateForm = document.getElementById('treatmentUpdateForm');
-
-    if (treatmentUpdateForm) {
-        treatmentUpdateForm.addEventListener('submit', async function (event) {
-            event.preventDefault();
-
-            const updatedTreatment = {
-                treatmentType: document.getElementById('updatedTreatmentType').value,
-                price: document.getElementById('updatedTreatmentPrice').value,
-                duration: document.getElementById('updatedTreatmentDuration').value,
-                discount: document.getElementById('updatedTreatmentDiscount').value,
-            };
-
-            try {
-                await updateTreatment(updatedTreatment);
-            } catch (error) {
-                console.error('Error during fetch:', error);
-            }
-        });
-    }
-
-    //update treatment function
-    async function updateTreatment(updatedTreatment) {
-        try {
-            const response = await fetch(`${apiUrl}/treatment/`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${storedToken}`
-                },
-                body: JSON.stringify(updatedTreatment)
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data.message);
-                fetchTreatments();
-            } else {
-                console.error('Error updating treatment:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error during fetch:', error);
-        }
-    }
-
-
-//function to delete treatment
+    //function to delete treatment
     async function deleteTreatment(treatmentId) {
         try {
             const response = await fetch(`${apiUrl}/deleteTreatment`, {
@@ -142,17 +93,17 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-//eventlistener for deletion
+    //eventlistener for deletion
     treatmentListBody.addEventListener('click', async function (event) {
         const target = event.target;
 
         if (target.classList.contains('delete-btn')) {
-            const treatmentType = target.dataset.treatmentType;
+            const treatmentId = target.dataset.treatmentId;
             const confirmed = confirm('Are you sure you want to delete this treatment?');
 
             if (confirmed) {
                 try {
-                    await deleteTreatment(treatmentType);
+                    await deleteTreatment(treatmentId);
                 } catch (error) {
                     console.error('Error during treatment deletion:', error);
                 }
@@ -161,7 +112,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 
-// Call fetchTreatments to initially populate the treatment list
+    // Call fetchTreatments to initially populate the treatment list
     fetchTreatments();
 
     if (treatmentCreationForm) {

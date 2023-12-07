@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
     const userCreationForm = document.getElementById('userCreationForm');
     const userCreationMessage = document.getElementById('userCreationMessage');
-    const tokenDisplay = document.getElementById('tokenDisplay');
     const logoutBtn = document.getElementById('logoutBtn');
     const userListBody = document.getElementById('userListBody');
 
@@ -13,15 +12,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         window.location.href = 'index.html';
     }
 
-    // Display the token on the users.html page if available
-    if (tokenDisplay && storedToken) {
-        tokenDisplay.textContent = `JWT Token: ${storedToken}`;
-    }
-
     // Fetch and display user data
     async function fetchUsers() {
         try {
-            const response = await fetch(`${apiUrl}/users`, {
+            const response = await fetch(`${apiUrl}/user/list`, {
                 headers: {
                     'Authorization': `Bearer ${storedToken}`
                 }
