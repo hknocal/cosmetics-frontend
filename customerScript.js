@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (response.ok) {
                 const customers = await response.json();
                 renderCustomerList(customers);
+                return customers;
             } else {
                 console.error('Error fetching customer data:', response.statusText);
             }
@@ -70,8 +71,25 @@ document.addEventListener('DOMContentLoaded', async function () {
                      <td>${customer.phoneNumber}</td>
                      <td>
                         <button class="btn btn-danger delete-btn" data-customer-id="${customer.customerId}">Delete</button>
+                        <button class="btn btn-primary update-btn" data-customer-id="${customer.customerId}">Update</button>
                      </td>`;
             userListBody.appendChild(row);
+
+            // Add event listener for update buttons
+            const updateButtons = document.querySelectorAll('.update-btn');
+            updateButtons.forEach(button => {
+                button.addEventListener('click', async function (event) {
+                    const customerId = event.target.dataset.customerId;
+                    const customers = await fetchCustomers();
+
+                    // Find the customer with the matching ID
+                    const customer = customers.find(c => c.customerId === parseInt(customerId));
+
+                    if (customer) {
+                        displayUpdateForm(customer);
+                    }
+                });
+            });
         });
     }
 
@@ -98,12 +116,62 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    // Event listener for delete buttons
+    function displayUpdateForm(customer) {
+        const updateFirstName = document.getElementById('updateFirstName');
+        const updateLastName = document.getElementById('updateLastName');
+        const updateMail = document.getElementById('updateMail');
+        const updateAddress = document.getElementById('updateAddress');
+        const updatePhoneNumber = document.getElementById('updatePhoneNumber');
+
+        updateFirstName.value = customer.firstname;
+        updateLastName.value = customer.lastname;
+        updateMail.value = customer.mail;
+        updateAddress.value = customer.address;
+        updatePhoneNumber.value = customer.phoneNumber;
+
+        $('#updateCustomerModal').modal('show');
+
+        updateCustomerForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const updatedCustomerData = {
+                firstname: updateFirstName.value,
+                lastname: updateLastName.value,
+                mail: updateMail.value,
+                address: updateAddress.value,
+                phoneNumber: updatePhoneNumber.value
+            };
+
+            try {
+                const response = await fetch(`${apiUrl}/customer/${customer.customerId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${storedToken}`
+                    },
+                    body: JSON.stringify(updatedCustomerData)
+                });
+
+                if (response.ok) {
+                    await fetchCustomers(); // Refresh the customer list after updating
+                } else {
+                    updateCustomerMessage.textContent = 'Error updating customer. Try again';
+                }
+            } catch (error) {
+                updateCustomerMessage.textContent = 'Error updating customer. Try again';
+            }
+
+            // Close the modal after updating
+            $('#updateCustomerModal').modal('hide');
+        });
+    }
+
+    // Add event listener for delete buttons
     userListBody.addEventListener('click', async function (event) {
         if (event.target.classList.contains('delete-btn')) {
             const customerId = event.target.dataset.customerId;
             await deleteCustomer(customerId);
-            fetchCustomers(); // Refresh the customer list after deletion
+            await fetchCustomers(); // Refresh the customer list after deletion
         }
     });
 
@@ -133,5 +201,5 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     // Call fetchCustomers to initially populate the customer list
-    fetchCustomers();
+    await fetchCustomers();
 });
