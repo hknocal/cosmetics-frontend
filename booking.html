@@ -6,6 +6,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Add Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="bookingScript.js" defer></script>
+    <script>
+        const apiUrl = 'http://localhost:8080';
+        // or use the Azure URL if needed: const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
+    </script>
     <title>Strandens Hudpleje Booking</title>
     <style>
         body {
@@ -94,8 +99,7 @@
                                     <input type="tel" class="form-control" id="phone" placeholder="Telefon" required>
                                 </div>
                             </div>
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mt-4">Bekræft booking</button>
+                            <button type="button" class="btn btn-primary btn-block mt-4" onclick="confirmBooking()">Bekræft booking</button>
                         </form>
                     </div>
                 </div>
@@ -145,7 +149,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="bookingScript.js"></script>
 <script src="script.js"></script>
 
 </body>
