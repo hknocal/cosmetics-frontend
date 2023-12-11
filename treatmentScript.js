@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function () {
-    //const apiUrl = 'http://localhost:8080';
-    const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
+    const apiUrl = 'http://localhost:8080';
+    //const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
     const treatmentCreationForm = document.getElementById('treatmentCreationForm');
     const treatmentCreationMessage = document.getElementById('treatmentCreationMessage');
     const tokenDisplay = document.getElementById('tokenDisplay');
@@ -62,6 +62,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const data = await response.json();
                 console.log(data.message);
                 fetchTreatments();
+                // Clear the form after creating a treatment
+                treatmentCreationForm.reset();
             } else {
                 console.error('Error creating treatment:', response.statusText);
             }
@@ -146,6 +148,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                     $('#createTreatmentModal').modal('hide');
                     // Refresh the treatment list
                     fetchTreatments();
+                    // Clear the form after creating a treatment
+                    treatmentCreationForm.reset();
                 } else {
                     treatmentCreationMessage.textContent = data.message || 'Error creating treatment. Try again';
                 }
