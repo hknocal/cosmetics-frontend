@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const apiUrl = 'http://localhost:8080';
-    //const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
+    //const apiUrl = 'http://localhost:8080';
+    const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
     const treatmentSelect = document.getElementById("treatmentSelect");
     const bookingForm = document.getElementById("bookingForm");
 
