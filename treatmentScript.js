@@ -3,17 +3,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
     const treatmentCreationForm = document.getElementById('treatmentCreationForm');
     const treatmentCreationMessage = document.getElementById('treatmentCreationMessage');
-    const tokenDisplay = document.getElementById('tokenDisplay');
     const logoutBtn = document.getElementById('logoutBtn');
     const treatmentListBody = document.getElementById('treatmentListBody');
-
-    // Check if there is a token on page load for treatments.html access
     const storedToken = localStorage.getItem('jwtToken');
     if (window.location.pathname.includes('treatments') && !storedToken) {
         window.location.href = 'index.html';
     }
 
-    // Fetch and display treatment data
     async function fetchTreatments() {
         try {
             const response = await fetch(`${apiUrl}/treatment`, {
@@ -46,7 +42,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    //function to create treatment.
     async function createTreatment(newTreatment) {
         try {
             const response = await fetch(`${apiUrl}/treatment`, {
@@ -62,6 +57,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const data = await response.json();
                 console.log(data.message);
                 fetchTreatments();
+                // Clear the form after creating a treatment
+                treatmentCreationForm.reset();
             } else {
                 console.error('Error creating treatment:', response.statusText);
             }
@@ -70,7 +67,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    //function to delete treatment
     async function deleteTreatment(treatmentId) {
         try {
             const response = await fetch(`${apiUrl}/deleteTreatment`, {
@@ -93,7 +89,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    //eventlistener for deletion
     treatmentListBody.addEventListener('click', async function (event) {
         const target = event.target;
 
@@ -112,7 +107,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 
-    // Call fetchTreatments to initially populate the treatment list
     fetchTreatments();
 
     if (treatmentCreationForm) {
@@ -142,10 +136,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                 if (response.ok) {
                     treatmentCreationMessage.textContent = data.message || 'Treatment created successfully!';
-                    // After creating a treatment, close the modal
                     $('#createTreatmentModal').modal('hide');
-                    // Refresh the treatment list
                     fetchTreatments();
+                    treatmentCreationForm.reset();
                 } else {
                     treatmentCreationMessage.textContent = data.message || 'Error creating treatment. Try again';
                 }

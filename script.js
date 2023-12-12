@@ -44,13 +44,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Check if there is a token on page load for dashboard access
     const storedToken = localStorage.getItem('jwtToken');
     if (window.location.pathname.includes('dashboard') && !storedToken) {
         window.location.href = 'index.html';
     }
 
-    // Display the token on the dashboard if available
     if (tokenDisplay && storedToken) {
         tokenDisplay.classList.add('token-link', 'text-primary', 'font-weight-bold', 'mb-3', 'cursor-pointer');
         tokenDisplay.textContent = 'Click to show JWT Token';
