@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Add Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Strandens Hudpleje Booking</title>
     <style>
@@ -28,13 +27,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-            <!-- "Booking" item on the left -->
             <li class="nav-item">
                 <a class="nav-link" href="booking.html">Booking</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <!-- "Admin" button on the right -->
             <li class="nav-item">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#adminModal">Admin</button>
             </li>
@@ -50,22 +47,18 @@
                     <div class="bg-light p-4 rounded">
                         <h2 class="mb-4">Book tid til hudpleje</h2>
                         <form id="bookingForm">
-                            <!-- Treatment selection -->
                             <div class="form-group">
                                 <label for="treatmentSelect">Vælg behandling</label>
                                 <select class="form-control" id="treatmentSelect">
-                                    <!-- Options will be populated dynamically -->
                                 </select>
                             </div>
                             <div class="row">
-                                <!-- Date selection -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="dateSelect">Vælg dato</label>
                                         <input type="date" class="form-control" id="dateSelect">
                                     </div>
                                 </div>
-                                <!-- Time selection -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="timeSelect">Vælg tid</label>
@@ -73,7 +66,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Customer data toggle button with Font Awesome down arrow icon -->
                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#customerInfo">
                                 Kundeinformation <i class="fas fa-caret-down"></i>
                             </button>
@@ -94,13 +86,11 @@
                                     <input type="tel" class="form-control" id="phone" placeholder="Telefon" required>
                                 </div>
                             </div>
-                            <!-- Submit button -->
                             <button type="submit" class="btn btn-primary btn-block mt-4">Bekræft booking</button>
                         </form>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <!-- Sidebar with menu -->
                     <div class="bg-light p-4 rounded">
                         <ul class="list-group">
                             <li class="list-group-item menu-item"><a href="#">Ret booking</a></li>
@@ -112,7 +102,6 @@
     </div>
 </div>
 
-<!-- Admin Modal -->
 <div class="modal fade" id="adminModal" tabindex="-1" role="dialog" aria-labelledby="adminModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -140,7 +129,6 @@
     </div>
 </div>
 
-<!-- Add Font Awesome script -->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

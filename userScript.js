@@ -5,14 +5,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     const userCreationMessage = document.getElementById('userCreationMessage');
     const logoutBtn = document.getElementById('logoutBtn');
     const userListBody = document.getElementById('userListBody');
-
-    // Check if there is a token on page load for users.html access
     const storedToken = localStorage.getItem('jwtToken');
     if (window.location.pathname.includes('users') && !storedToken) {
         window.location.href = 'index.html';
     }
 
-    // Fetch and display user data
     async function fetchUsers() {
         try {
             const response = await fetch(`${apiUrl}/user/list`, {
@@ -47,23 +44,19 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    // Add an event listener for clicks on the table body
     userListBody.addEventListener('click', async function (event) {
         const target = event.target;
 
-        // Check if the clicked element is a delete button
         if (target.classList.contains('delete-btn')) {
             const username = target.dataset.username;
             const confirmed = confirm('Are you sure you want to delete this user?');
 
             if (confirmed) {
-                // Call the function to delete the user
                 deleteUser(username);
             }
         }
     });
 
-    // Function to delete the user by sending a DELETE request to the server
     async function deleteUser(username) {
         try {
             const response = await fetch(`${apiUrl}/deleteUser`, {
@@ -87,7 +80,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    // Call fetchUsers to initially populate the user list
     fetchUsers();
 
     if (userCreationForm) {

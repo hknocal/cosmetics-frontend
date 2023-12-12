@@ -6,13 +6,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     const createCustomerForm = document.getElementById('createCustomerForm');
     const createCustomerMessage = document.getElementById('createCustomerMessage');
 
-    // Check if there is a token on page load for customer.html access
     const storedToken = localStorage.getItem('jwtToken');
     if (window.location.pathname.includes('customer') && !storedToken) {
         window.location.href = 'index.html';
     }
 
-    // Function to create a customer
     async function createCustomer(newCustomerData) {
         try {
             const response = await fetch(`${apiUrl}/customer`, {
@@ -27,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (response.ok) {
                 const data = await response.json();
                 console.log(data.message);
-                fetchCustomers(); // Refresh the customer list after creating a customer
+                fetchCustomers();
             } else {
                 console.error('Error creating customer:', response.statusText);
                 createCustomerMessage.textContent = 'Error creating customer. Try again';
@@ -38,7 +36,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    // Function to fetch and display customer data
     async function fetchCustomers() {
         try {
             const response = await fetch(`${apiUrl}/customer`, {
@@ -60,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     function renderCustomerList(customers) {
-        userListBody.innerHTML = ''; // Clear existing content
+        userListBody.innerHTML = '';
         customers.forEach(customer => {
             const row = document.createElement('tr');
             row.innerHTML = `<td>${customer.customerId}</td>
@@ -75,14 +72,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                      </td>`;
             userListBody.appendChild(row);
 
-            // Add event listener for update buttons
             const updateButtons = document.querySelectorAll('.update-btn');
             updateButtons.forEach(button => {
                 button.addEventListener('click', async function (event) {
                     const customerId = event.target.dataset.customerId;
                     const customers = await fetchCustomers();
 
-                    // Find the customer with the matching ID
                     const customer = customers.find(c => c.customerId === parseInt(customerId));
 
                     if (customer) {
@@ -93,7 +88,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    // Event listener for the create customer form submission
     if (createCustomerForm) {
         createCustomerForm.addEventListener('submit', async function (event) {
             event.preventDefault();
@@ -153,7 +147,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 });
 
                 if (response.ok) {
-                    await fetchCustomers(); // Refresh the customer list after updating
+                    await fetchCustomers();
                 } else {
                     updateCustomerMessage.textContent = 'Error updating customer. Try again';
                 }
@@ -166,16 +160,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    // Add event listener for delete buttons
     userListBody.addEventListener('click', async function (event) {
         if (event.target.classList.contains('delete-btn')) {
             const customerId = event.target.dataset.customerId;
             await deleteCustomer(customerId);
-            await fetchCustomers(); // Refresh the customer list after deletion
+            await fetchCustomers();
         }
     });
 
-    // Function to delete a customer
     async function deleteCustomer(id) {
         try {
             const response = await fetch(`${apiUrl}/customer/${id}`, {
@@ -200,6 +192,5 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     }
 
-    // Call fetchCustomers to initially populate the customer list
     await fetchCustomers();
 });
