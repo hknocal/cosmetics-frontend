@@ -49,10 +49,12 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then((response) => {
                 if (response.ok) {
-                    alert("Booking successful!");
+                    // Show success modal
+                    $('#successModal').modal('show');
                     bookingForm.reset();
                 } else {
-                    alert("Booking failed. Please try again.");
+                    // Show error modal
+                    $('#errorModal').modal('show');
                 }
             })
             .catch((error) => {
