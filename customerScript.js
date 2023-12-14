@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                      <td>${customer.address}</td>
                      <td>${customer.phoneNumber}</td>
                      <td>
-                        <button class="btn btn-danger delete-btn" data-customer-id="${customer.customerId}">Delete</button>
-                        <button class="btn btn-primary update-btn" data-customer-id="${customer.customerId}">Update</button>
+                     <button class="btn btn-secondary update-btn" data-customer-id="${customer.customerId}">Update</button>
+                        <button class="btn btn-dark delete-btn" data-customer-id="${customer.customerId}">Delete</button>
                      </td>`;
             userListBody.appendChild(row);
 
