@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 <td>${user.id}</td>
                 <td>${user.username}</td>
                 <td>
-                    <button class="btn btn-danger delete-btn" data-username="${user.username}">Delete</button>
+                    <button class="btn btn-dark delete-btn" data-username="${user.username}">Delete</button>
                 </td>
             `;
             userListBody.appendChild(row);

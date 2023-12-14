@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function () {
-    //const apiUrl = 'http://localhost:8080';
-    const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
+    const apiUrl = 'http://localhost:8080';
+    //const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
     const treatmentCreationForm = document.getElementById('treatmentCreationForm');
     const treatmentCreationMessage = document.getElementById('treatmentCreationMessage');
     const tokenDisplay = document.getElementById('tokenDisplay');
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         treatments.forEach(treatment => {
             const row = document.createElement('tr');
             row.innerHTML = `<td>${treatment.treatmentType}</td><td>${treatment.price}</td><td>${treatment.duration}</td><td>${treatment.discount}</td><td>
-            <button class="btn btn-danger delete-btn" data-treatment-id="${treatment.id}">
+            <button class="btn btn-dark delete-btn" data-treatment-id="${treatment.id}">
                 Delete
             </button>
         </td>`;

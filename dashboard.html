@@ -15,57 +15,73 @@
                 padding-top: 70px;
             }
         }
+
+        .navbar-item {
+            text-decoration: none !important;
+            font-size: 0.8rem;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, rgba(131, 145, 152, 0.9), rgba(158, 163, 166, 0.9)), url('https://drcamillahill.co.uk/wp-content/uploads/2022/08/Dr-Camilla-Hill-Blog-Image-1799-x-1448px.jpg') center center fixed;
+            background-size: cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .infobox {
+            background: rgb(242, 246, 250) !important;
+        }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top rounded">
     <a class="navbar-brand" href="dashboard.html">Dashboard</a>
-</nav>
-
-<div class="container-fluid">
-    <div class="row">
-        <nav class="col-md-2 d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="customer.html">
-                            Customers
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Bookings
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="treatments.html">
-                            Treatments
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="users.html">
-                            Users
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Dashboard</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <button id="logoutBtn" class="btn btn-primary">Logout</button>
-                </div>
-            </div>
-            <div id="tokenDisplay" class="token-link">Click to show JWT Token</div>
-        </main>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link navbar-item" href="users.html">User administration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-item" href="customer.html">Customer Overview</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-item" href="treatments.html">Treatment Overview</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link navbar-item" href="booking.html">Booking Overview</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <button id="logoutBtn" class="btn btn-info">Logout</button>
+            </li>
+        </ul>
     </div>
+</nav>
+</body>
+<main role="main" class="col-md-9 col-lg-10 px-4 container-fluid">
+    <div class="infobox rounded p-4 d-flex flex-column justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h3 class="h2">Dashboard</h3>
+        <div class="d-flex flex-column align-items-center">
+            <div id="tokenDisplay" class="token-link mt-3">Click to show JWT Token</div>
+        </div>
+    </div>
+
+
+</main>
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="script.js"></script>
-</body>
 </html>
