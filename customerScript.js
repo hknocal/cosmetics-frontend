@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', async function () {
-   // const apiUrl = 'http://localhost:8080';
+    //const apiUrl = 'http://localhost:8080';
     const apiUrl = 'https://cosmeticsbackend.azurewebsites.net';
     const logoutBtn = document.getElementById('logoutBtn');
     const userListBody = document.getElementById('customerListBody');
