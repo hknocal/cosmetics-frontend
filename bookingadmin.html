@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <title>User Administration</title>
+    <title>Booking Overview</title>
     <style>
         body {
             padding-top: 56px;
@@ -53,67 +53,47 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">User administration</h1>
+                <h1 class="h2">Booking Overview</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <button id="logoutBtn" class="btn btn-primary">Logout</button>
                 </div>
             </div>
 
-            <h3 class="h5">User List</h3>
+            <h3 class="h5">Booking list</h3>
             <table class="table">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Actions</th>
+                    <th>Treatment</th>
+                    <th>Customer</th>
+                    <th>Appointment Time</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
-                <tbody id="userListBody">
-                <tr>
-                    <td>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
+                <tbody id="bookingListBody">
+                <!-- This is where the booking list will be displayed -->
                 </tbody>
             </table>
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">
-                Create User
-            </button>
-
-            <div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="createUserModalLabel">Create User</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="userCreationForm">
-                                <div class="form-group">
-                                    <label for="newUsername">Username:</label>
-                                    <input type="text" id="newUsername" name="newUsername" class="form-control" placeholder="Enter username" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="newPassword">Password:</label>
-                                    <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="Enter password" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Create User</button>
-                            </form>
-                            <div id="userCreationMessage"></div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Create Booking button (you can implement it later) -->
+            <div class="mb-4">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createBookingModal">
+                    Create Booking
+                </button>
             </div>
+
+            <!-- Create Booking Modal (you can implement it later) -->
+            <div class="modal fade" id="createBookingModal" tabindex="-1" role="dialog" aria-labelledby="createBookingModalLabel" aria-hidden="true">
+                <!-- Modal content goes here -->
+            </div>
+
         </main>
     </div>
 </div>
 
+<!-- Same script imports as treatments.html -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="userScript.js"></script>
+<script src="bookingadminScript.js"></script>
 </body>
 </html>
